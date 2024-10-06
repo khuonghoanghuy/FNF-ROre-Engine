@@ -8,7 +8,7 @@ using StringTools;
 
 class Paths {
 	inline public static final DEFAULT_FOLDER:String = 'assets';
-	inline public static final SOUND_EXT:String = '.ogg';
+	inline public static var SOUND_EXT:String = '.ogg';
 
 	static public function getPath(folder:Null<String>, file:String) {
 		if (folder == null)

@@ -15,15 +15,30 @@ class TitleState extends MusicBeatState
     var gfDance:FlxSpriteOverlay;
     var swagShader:ColorSwap;
     var transitioning:Bool = false;
+    var initialized:Bool = false;
     var skippedIntro:Bool = false;
 
     override function create() {
         super.create();
+        FlxG.sound.cache(Paths.music('freakyMenu/freakyMenu'));
         swagShader = new ColorSwap();
-        startIntro();
+        if (!initialized) new FlxTimer().start(1, function(tmr:FlxTimer) {
+            startIntro();
+        });
+        else
+            startIntro();
     }
 
     function startIntro() {
+		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
+        {
+            FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+            FlxG.sound.music.fadeIn(4, 0, 0.7);
+        }
+
+        backend.data.Conductor.changeBPM(102);
+        persistentUpdate = true;
+
         logoBl = new FlxSprite(-150, -100);
         logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
         logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);

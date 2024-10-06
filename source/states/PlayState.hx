@@ -17,9 +17,11 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		#if allow_hscript
 		for (script in LimeAssets.list(TEXT).filter(text -> text.contains('assets/scripts')))
 			if (script.endsWith('.hx'))
 				scriptArray.push(new HScript(script));
+		#end
 
 		callOnScripts("create", []);
 
@@ -27,8 +29,10 @@ class PlayState extends MusicBeatState
 
 		callOnScripts("createPost", []);
 
+		#if allow_hscript
 		if (LimeAssets.exists(Paths.script('data/scripts/script')))
 			scriptArray.push(new HScript(Paths.script('data/scripts/script')));
+		#end
 	}
 
 	override public function update(elapsed:Float)
