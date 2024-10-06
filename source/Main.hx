@@ -1,5 +1,7 @@
 package;
 
+import openfl.display.FPS;
+import backend.data.Save;
 import flixel.FlxGame;
 import openfl.display.Sprite;
 import states.PlayState;
@@ -17,6 +19,8 @@ class Main extends Sprite
 		startFullscreen: false // Whether to start the game in fullscreen on desktop targets
 	};
 
+	public static var fpsCounter:FPS;
+
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public function new()
@@ -32,5 +36,13 @@ class Main extends Sprite
 		game._customSoundTray = CustomFlxSoundTray;
 
 		addChild(game);
+
+		// save handle
+		Save.loadSettings();
+		fpsCounter = new FPS(10, 3, 0xffffff);
+		if (Save.get("FPS Counter"))
+			addChild(fpsCounter);
+		else
+			removeChild(fpsCounter);
 	}
 }
