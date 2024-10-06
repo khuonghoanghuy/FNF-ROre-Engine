@@ -1,5 +1,8 @@
 package backend.state;
 
+import backend.data.Save;
+import flixel.system.FlxAssets.FlxShader;
+import flixel.FlxObject;
 import backend.data.Conductor;
 import backend.data.PlayerSettings;
 import backend.data.Controls;
@@ -15,6 +18,7 @@ class MusicBeatState extends FlxUIState
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;
 	public var controls(get, never):Controls;
+    public var save:Save;
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
@@ -67,11 +71,5 @@ class MusicBeatState extends FlxUIState
 	public function beatHit():Void
 	{
 		//do literally nothing dumbass
-	}
-
-	public function multi_added(basic:Array<FlxBasic>) {
-		for (b1 in basic) {
-			add(b1);
-		}
 	}
 }

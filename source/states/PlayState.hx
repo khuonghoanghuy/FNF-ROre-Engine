@@ -1,10 +1,11 @@
 package states;
 
+import backend.state.MusicBeatState;
 import flixel.FlxState;
 
 using StringTools;
 
-class PlayState extends FlxState
+class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState = null;
 	var scriptArray:Array<HScript> = [];

@@ -11,3 +11,5 @@ import backend.modding.Modding;
 import backend.modding.HScript;
 import backend.util.Paths;
 import lime.utils.Assets as LimeAssets;
+import backend.data.Save;
+import funkin.Assets;

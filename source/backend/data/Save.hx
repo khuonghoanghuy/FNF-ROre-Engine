@@ -4,8 +4,11 @@ import flixel.util.FlxSave;
 
 class Save {
     public static var settings:Map<String, Dynamic> = [
-        // name, value
-        "FPS Counter" => true
+        // Quality
+        "anti" => true,
+        "shaders" => true,
+        // Misc
+        "fps counter" => true,
 	];
 
     public static function saveSettings() {
@@ -34,8 +37,8 @@ class Save {
 	}
 
 	public static function get(string:String)
-		return settings.get(string);
+		return settings.get(string.toLowerCase());
 	
 	public static function set(string:String, newValue:Dynamic)
-		return settings.set(string, newValue);
+		return settings.set(string.toLowerCase(), newValue);
 }

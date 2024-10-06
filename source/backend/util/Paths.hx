@@ -8,6 +8,7 @@ using StringTools;
 
 class Paths {
 	inline public static final DEFAULT_FOLDER:String = 'assets';
+	inline public static final SOUND_EXT:String = '.ogg';
 
 	static public function getPath(folder:Null<String>, file:String) {
 		if (folder == null)
@@ -24,8 +25,46 @@ class Paths {
     inline static public function script(key:String)
 		return file('$key.hx');
 
+	inline static public function txt(key:String)
+		return file('data/$key.txt');
+
+	inline static public function xml(key:String)
+		return file('data/$key.xml');
+
+	inline static public function json(key:String)
+		return file('data/$key.json');
+
+	#if yaml
+	inline static public function yaml(key:String)
+		return file('data/$key.yaml');
+	#end
+
+	inline static public function video(key:String)
+		return file('videos/$key.mp4');
+
+	inline static public function sound(key:String)
+		return file('sounds/$key.$SOUND_EXT');
+
+	inline static public function soundRandom(key:String, min:Int, max:Int)
+		return file('sounds/$key${FlxG.random.int(min, max)}.$SOUND_EXT');
+
+	inline static public function music(key:String)
+		return file('music/$key.$SOUND_EXT');
+
+	inline static public function image(key:String)
+		return file('images/$key.png');
+
 	inline static public function font(key:String)
 		return file('fonts/$key');
+
+	inline static public function frag(key:String)
+		return file('shaders/$key.frag');
+
+	inline static public function getSparrowAtlas(key:String)
+		return FlxAtlasFrames.fromSparrow(image(key), file('images/$key.xml'));
+
+	inline static public function getPackerAtlas(key:String)
+		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), file('images/$key.txt'));
 
     inline static public function formatToSongPath(path:String) {
 		var invalidChars = ~/[~&\\;:<>#]/;

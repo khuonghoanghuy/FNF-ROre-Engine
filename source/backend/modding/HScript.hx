@@ -11,6 +11,7 @@ import openfl.Lib;
 import flixel.FlxBasic;
 import hscript.*;
 import states.PlayState;
+import flixel.*;
 
 class HScript extends FlxBasic
 {
@@ -56,6 +57,7 @@ class HScript extends FlxBasic
         setVariable('FlxText', FlxText);
         setVariable('FlxTween', FlxTween);
         setVariable('FlxEase', FlxEase);
+		setVariable('FlxCamera', FlxCamera);
 
         setVariable("game", PlayState.instance);
         setVariable("add", function (basic:FlxBasic) {
