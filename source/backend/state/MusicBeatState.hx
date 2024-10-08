@@ -12,8 +12,8 @@ import flixel.addons.ui.FlxUIState;
 
 class MusicBeatState extends FlxUIState
 {
-	private var lastBeat:Float = 0;
-	private var lastStep:Float = 0;
+	private var lastBeat:Int = 0;
+	private var lastStep:Int = 0;
 
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;

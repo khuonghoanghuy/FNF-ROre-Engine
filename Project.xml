@@ -38,6 +38,7 @@
 	<define name="allow_lua" if="desktop" />
 	<define name="allow_hscript" if="desktop" />
 	<define name="allow_modding" if="desktop" />
+	<define name="allow_shader" if="desktop" /> <!--wait this one is unuse-->
 
 	<haxelib name="flixel" version="5.8.0" />
 	<haxelib name="flixel-addons" version="3.2.3" />
@@ -47,6 +48,7 @@
 	<haxelib name="hxcpp-debug-server" if="debug" /> <!--You can remove this if you don't need it-->
 	<haxelib name="hscript" version="2.5.0" if="allow_hscript" />
 	<haxelib name="linc_luajit" if="allow_lua" />
+	<haxelib name="flixel-shadertoy-shader" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

@@ -5,59 +5,59 @@ import flixel.util.FlxColor;
 
 class ColorSwap
 {
-  public var shader(default, null):ColorSwapShader;
-  public var colorToReplace(default, set):FlxColor;
-  public var newColor(default, set):FlxColor;
-  public var daTime(default, set):Float;
+	public var shader(default, null):ColorSwapShader;
+	public var colorToReplace(default, set):FlxColor;
+	public var newColor(default, set):FlxColor;
+	public var daTime(default, set):Float;
 
-  public var hasOutline(default, set):Bool = false;
+	public var hasOutline(default, set):Bool = false;
 
-  public var hueShit:Float = 0;
+	public var hueShit:Float = 0;
 
-  public function new():Void
-  {
-    shader = new ColorSwapShader();
-    shader.uTime.value = [0];
-    shader.money.value = [0];
-    shader.awesomeOutline.value = [hasOutline];
-  }
+	public function new():Void
+	{
+		shader = new ColorSwapShader();
+		shader.uTime.value = [0];
+		shader.money.value = [0];
+		shader.awesomeOutline.value = [hasOutline];
+	}
 
-  public function update(elapsed:Float):Void
-  {
-    shader.uTime.value[0] += elapsed;
-    hueShit += elapsed;
-    // trace(shader.money.value[0]);
-  }
+	public function update(elapsed:Float):Void
+	{
+		shader.uTime.value[0] += elapsed;
+		hueShit += elapsed;
+		// trace(shader.money.value[0]);
+	}
 
-  function set_colorToReplace(color:FlxColor):FlxColor
-  {
-    colorToReplace = color;
+	function set_colorToReplace(color:FlxColor):FlxColor
+	{
+		colorToReplace = color;
 
-    return color;
-  }
+		return color;
+	}
 
-  function set_hasOutline(lol:Bool):Bool
-  {
-    shader.awesomeOutline.value = [lol];
-    return lol;
-  }
+	function set_hasOutline(lol:Bool):Bool
+	{
+		shader.awesomeOutline.value = [lol];
+		return lol;
+	}
 
-  function set_daTime(daTime:Float):Float
-  {
-    return daTime;
-  }
+	function set_daTime(daTime:Float):Float
+	{
+		return daTime;
+	}
 
-  function set_newColor(color:FlxColor):FlxColor
-  {
-    newColor = color;
+	function set_newColor(color:FlxColor):FlxColor
+	{
+		newColor = color;
 
-    return color;
-  }
+		return color;
+	}
 }
 
 class ColorSwapShader extends FlxShader
 {
-  @:glFragmentSource('
+	@:glFragmentSource('
         #pragma header
 
         uniform float uTime;
@@ -66,8 +66,8 @@ class ColorSwapShader extends FlxShader
 
 
         const float offset = 1.0 / 128.0;
-
-
+        
+        
 
         vec3 normalizeColor(vec3 color)
         {
@@ -101,7 +101,7 @@ class ColorSwapShader extends FlxShader
             vec4 color = flixel_texture2D(bitmap, openfl_TextureCoordv);
 
             vec4 swagColor = vec4(rgb2hsv(vec3(color[0], color[1], color[2])), color[3]);
-
+            
             // [0] is the hue???
             swagColor[0] += uTime;
             // swagColor[1] += uTime;
@@ -109,7 +109,7 @@ class ColorSwapShader extends FlxShader
             // money += swagColor[0];
 
             color = vec4(hsv2rgb(vec3(swagColor[0], swagColor[1], swagColor[2])), swagColor[3]);
-
+            
 
             if (awesomeOutline)
             {
@@ -119,7 +119,7 @@ class ColorSwapShader extends FlxShader
                 if (color.a <= 0.5) {
                     float w = size.x / openfl_TextureSize.x;
                     float h = size.y / openfl_TextureSize.y;
-
+                    
                     if (flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x + w, openfl_TextureCoordv.y)).a != 0.
                     || flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x - w, openfl_TextureCoordv.y)).a != 0.
                     || flixel_texture2D(bitmap, vec2(openfl_TextureCoordv.x, openfl_TextureCoordv.y + h)).a != 0.
@@ -130,12 +130,12 @@ class ColorSwapShader extends FlxShader
 
             }
 
-
-
+           
+            
             gl_FragColor = color;
-
-
-            /*
+            
+            
+            /* 
             if (color.a > 0.5)
                 gl_FragColor = color;
             else
@@ -152,8 +152,8 @@ class ColorSwapShader extends FlxShader
         }
 
     ')
-  public function new()
-  {
-    super();
-  }
+	public function new()
+	{
+		super();
+	}
 }

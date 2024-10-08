@@ -13,3 +13,4 @@ import backend.util.Paths;
 import lime.utils.Assets as LimeAssets;
 import backend.data.Save;
 import funkin.Assets;
+import backend.state.MusicBeatState;
